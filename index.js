@@ -27,6 +27,25 @@ function playerChoice(){
     return userChoice;
 }
 
+function comparison(playerHand, computerHand){
+
+    if(playerHand === computerHand){
+        console.log("Tie.");
+    }
+    else if ((playerHand === "rock" && computerHand === "scissors") || 
+             (playerHand === "paper" && computerHand === "rock")    || 
+             (playerHand === "scissors" && computerHand === "paper")  )
+    {
+        console.log("Player wins.");
+    }
+    else{
+        console.log("Player lost finally.");
+    }
+}
+
+
+
+
 /*
 function comparison() determines if player wins or not
 function playAgainPrompt() asks user if player would like to play again
