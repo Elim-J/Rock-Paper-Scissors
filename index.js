@@ -1,27 +1,27 @@
 const handChoices = ["rock", "paper", "scissors"];
-let playAgain = false;
+let wantToPlay = false;
 let computerOne;   
 let playerOne;
 
 /*
     Return number 0-2
 */
-function random(){
+function getRandomNumber(){
     return Math.floor((Math.random() * 3));
 }
 
 /*
     return computer's random choice
 */
-function computerChoice(){
-    return handChoices[random()];
+function getComputerChoice(){
+    return handChoices[getRandomNumber()];
 }
 
 /*
     prompt player for rock, paper, or scissors
     return userChoice
 */
-function playerChoice(){
+function getPlayerChoice(){
     let userChoice;
     do{ 
         userChoice = prompt("Please choose rock, paper, or scissors");
@@ -36,7 +36,7 @@ function playerChoice(){
 /*
     compare player and computer to determine winner
 */
-function comparison(playerHand, computerHand){
+function compareHands(playerHand, computerHand){
     if(playerHand === computerHand){
         console.log("Tie.");
     }
@@ -58,10 +58,10 @@ function playAgainPrompt(){
     let userInput = "";
 
     do{
-        userInput = prompt("Would you like to play again? Y/N")
-    }while((userInput !== "Y") && (userInput !== "N"));
+        userInput = prompt("Would you like to play again? y/n")
+    }while((userInput !== "y") && (userInput !== "n"));
 
-    if(userInput === "Y"){
+    if(userInput === "y"){
         return true;
     }
     else{
@@ -73,12 +73,12 @@ function playAgainPrompt(){
     One game round
 */
 function playGame(){
-    computerOne = computerChoice();
-    playerOne = playerChoice();
-    comparison(playerOne, computerOne);
+    computerOne = getComputerChoice();
+    playerOne = getPlayerChoice();
+    compareHands(playerOne, computerOne);
 }
 
 do{
     playGame();
-    playAgain = playAgainPrompt();
-}while(playAgain)
+    wantToPlay = playAgainPrompt();
+}while(wantToPlay)
