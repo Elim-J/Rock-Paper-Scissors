@@ -72,7 +72,7 @@ function playAgainPrompt(){
 /*
     One game round
 */
-function playerChoiceByBtn(){
+function playGame(){
     computerOne = getComputerChoice();
     playerOne = getPlayerChoice();
     compareHands(playerOne, computerOne);
@@ -88,27 +88,39 @@ function playerChoiceByBtn(){
 */
 
 function playerChoiceByBtn(e){
-    console.log(e);
+    console.log(e.target.className);
+    const playerChoice = e.target.classList.value;
+    return playerChoice;
+}
+
+function playByBtn(e){
+    computerOne = getComputerChoice();
+    console.log(computerOne);
+    playerOne = playerChoiceByBtn(e);
+    compareHands(playerOne, computerOne);
 }
 
 const root = document.querySelector("#root");
 
 const btnRock = document.createElement("button");
+btnRock.classList.add("rock");
 btnRock.textContent = "ROCK";
 
 const btnPaper = document.createElement("button");
+btnPaper.classList.add("paper");
 btnPaper.textContent = "PAPER";
 
 const btnScissors = document.createElement("button");
+btnScissors.classList.add("scissors");
 btnScissors.textContent = "SCISSORS";
 
 root.appendChild(btnRock);
 root.appendChild(btnPaper);
 root.appendChild(btnScissors);
 
-btnRock.addEventListener("click", playerChoiceByBtn);
-btnPaper.addEventListener("click", playerChoiceByBtn);
-btnScissors.addEventListener("click", playerChoiceByBtn);
+btnRock.addEventListener("click", playByBtn);
+btnPaper.addEventListener("click", playByBtn);
+btnScissors.addEventListener("click", playByBtn);
 
 
 
