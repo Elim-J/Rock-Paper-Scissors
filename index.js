@@ -1,5 +1,4 @@
 const handChoices = ["rock", "paper", "scissors"];
-let wantToPlay = false;
 let computerOne;   
 let playerOne;
 
@@ -11,30 +10,14 @@ function getRandomNumber(){
 }
 
 /*
-    return computer's random choice
+    Return computer's random choice
 */
 function getComputerChoice(){
     return handChoices[getRandomNumber()];
 }
 
 /*
-    prompt player for rock, paper, or scissors
-    return userChoice
-*/
-function getPlayerChoice(){
-    let userChoice;
-    do{ 
-        userChoice = prompt("Please choose rock, paper, or scissors");
-        userChoice = userChoice.toLowerCase();
-    }while( (userChoice !== handChoices[0]) &&
-            (userChoice !== handChoices[1]) &&
-            (userChoice !== handChoices[2]) );
-            
-    return userChoice;
-}
-
-/*
-    compare player and computer to determine winner
+    Compare player and computer to determine winner
 */
 function compareHands(playerHand, computerHand){
     if(playerHand === computerHand){
@@ -51,34 +34,51 @@ function compareHands(playerHand, computerHand){
     }
 }
 
-/*
-    return true if player wants to play again, otherwise false
+/* 
+    BELOW THIS LINE: Follow design given
 */
-function playAgainPrompt(){
-    let userInput = "";
 
-    do{
-        userInput = prompt("Would you like to play again? y/n")
-    }while((userInput !== "y") && (userInput !== "n"));
-
-    if(userInput === "y"){
-        return true;
-    }
-    else{
-        return false;
-    }
+/* 
+    Use classList value as player choice
+*/
+function getChoiceByBtn(e){
+    const playerChoice = e.target.classList.value;
+    return playerChoice;
 }
 
-/*
-    One game round
-*/
-function playGame(){
+function playGame(e){
     computerOne = getComputerChoice();
-    playerOne = getPlayerChoice();
+    playerOne = getChoiceByBtn(e);
     compareHands(playerOne, computerOne);
 }
 
-do{
-    playGame();
-    wantToPlay = playAgainPrompt();
-}while(wantToPlay)
+/*
+    Create buttons with classes and text content
+    Append buttons to root element in html 
+*/
+const root = document.querySelector("#root");
+
+const btnRock = document.createElement("button");
+btnRock.classList.add("rock");
+btnRock.textContent = "ROCK";
+
+const btnPaper = document.createElement("button");
+btnPaper.classList.add("paper");
+btnPaper.textContent = "PAPER";
+
+const btnScissors = document.createElement("button");
+btnScissors.classList.add("scissors");
+btnScissors.textContent = "SCISSORS";
+
+root.appendChild(btnRock);
+root.appendChild(btnPaper);
+root.appendChild(btnScissors);
+//END of Create and Append buttons
+
+
+btnRock.addEventListener("click", playGame);
+btnPaper.addEventListener("click", playGame);
+btnScissors.addEventListener("click", playGame);
+
+
+
