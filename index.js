@@ -72,13 +72,43 @@ function playAgainPrompt(){
 /*
     One game round
 */
-function playGame(){
+function playerChoiceByBtn(){
     computerOne = getComputerChoice();
     playerOne = getPlayerChoice();
     compareHands(playerOne, computerOne);
 }
 
-do{
-    playGame();
-    wantToPlay = playAgainPrompt();
-}while(wantToPlay)
+// do{
+//     playGame();
+//     wantToPlay = playAgainPrompt();
+// }while(wantToPlay)
+
+/* 
+    BELOW THIS LINE: following design given
+*/
+
+function playerChoiceByBtn(e){
+    console.log(e);
+}
+
+const root = document.querySelector("#root");
+
+const btnRock = document.createElement("button");
+btnRock.textContent = "ROCK";
+
+const btnPaper = document.createElement("button");
+btnPaper.textContent = "PAPER";
+
+const btnScissors = document.createElement("button");
+btnScissors.textContent = "SCISSORS";
+
+root.appendChild(btnRock);
+root.appendChild(btnPaper);
+root.appendChild(btnScissors);
+
+btnRock.addEventListener("click", playerChoiceByBtn);
+btnPaper.addEventListener("click", playerChoiceByBtn);
+btnScissors.addEventListener("click", playerChoiceByBtn);
+
+
+
